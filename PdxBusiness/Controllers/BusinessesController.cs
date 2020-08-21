@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using PdxBusiness.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace PdxBusiness.Controllers
 {
@@ -23,7 +24,7 @@ namespace PdxBusiness.Controllers
       return _db.Businesses.ToList();
     }
 
-    // POST api/businesses
+    // POST api/businesses    -> THIS IS LIKE CREATE
     [HttpPost]
     public void Post([FromBody] Business business) //expect business object from body
     {
@@ -37,6 +38,16 @@ namespace PdxBusiness.Controllers
     // very similar to controller on line 20, but takes in id and returns specific result instead of returning all results
     {
       return _db.Businesses.FirstOrDefault(business => business.BusinessId == id);
+    }
+
+    // PUT api/animals/#    -> THIS IS LIKE EDIT
+    [HttpPut("{id}")]
+    public void Put(int id, [FromBody] Business business) 
+    // needs an id so it knows which object to edit, changes to be made should be made in the body prior to activating PUT route, which is why we also take in the object from the body - this is how we know what to change
+    {
+      business.BusinessId = id;
+      _db.Entry(business).State = EntityState.Modified;
+      _db.SaveChanges();
     }
   }
 }
