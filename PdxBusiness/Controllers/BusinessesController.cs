@@ -6,9 +6,9 @@ using Microsoft.EntityFrameworkCore;
 using PdxBusiness.Wrappers;
 using System.Threading.Tasks;
 
-// using System;
-// using System.Net.WebSockets;
-// using Microsoft.AspNetCore.Http;
+using System;
+using System.Net.WebSockets;
+using Microsoft.AspNetCore.Http;
 
 
 namespace PdxBusiness.Controllers
@@ -66,9 +66,9 @@ namespace PdxBusiness.Controllers
       _db.SaveChanges();
     }
 
-    // routes using pagination
+    // routes using pagination - NEED TO DO IN OWNERSCONTROLLER AS WELL!!!!!!!!!!!
 
-    // GET api/businesses/# with wrapper for pagination
+    // GET api/businesses/pages/# with wrapper for pagination
     [HttpGet("pages/{id}")]
     public async Task<IActionResult> GetById(int id)
     {
@@ -76,6 +76,17 @@ namespace PdxBusiness.Controllers
       return Ok(new Response<Business>(business));
     }
 
-    
+    // GET api/businesses/pages?
+    [HttpGet("pages/")]
+    public async Task<IActionResult> GetAll([FromQuery] PaginationFilter filter)
+    {
+      var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
+      var pagedData = await _db.Businesses
+        .Skip((validFilter.PageNumber - 1) * validFilter.PageSize) // calculates how many results/pages to skip
+        .Take(validFilter.PageSize)
+        .ToListAsync();
+      var totalRecords = await _db.Businesses.CountAsync();
+      return Ok(new PagedResponse<List<Business>>(pagedData, validFilter.PageNumber, validFilter.PageSize));
+    }
   }
 }
