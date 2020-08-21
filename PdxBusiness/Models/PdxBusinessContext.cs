@@ -24,35 +24,19 @@ namespace PdxBusiness.Models
           new Business { BusinessId = 6, Name = "SomaFlow Health and Massage, LLC", Owner = "Kristi Carlough", Address = "1033 SW Yamhill St., Suite 203, Portland, OR. 97209", PhoneNumber = "(503) 929-3525", Description = "Althernative and holistic health services, health and wellness, massage", Url = "https://www.somaflow.health/"},
           new Business { BusinessId = 7, Name = "Clary Sage Herbarium", Owner = "Laurie Books", Address = "2901 NE Alberta St. Portland, OR. 97211", PhoneNumber = "(503) 236-6737", Description = "Woman owned, Indegenous, two-spirit-owned and operated herb shop", Url = "https://clarysageherbarium.com/"}
           // new Business { BusinessId = , Name = "", Owner = "", Address = "", PhoneNumber = "", Description = "", Url = ""}
-          // new Business { BusinessId = , Name = "", Owner = "", Address = "", PhoneNumber = "", Description = "", Url = ""}
-          // new Business { BusinessId = , Name = "", Owner = "", Address = "", PhoneNumber = "", Description = "", Url = ""}
-          // new Business { BusinessId = , Name = "", Owner = "", Address = "", PhoneNumber = "", Description = "", Url = ""}
         );
 
         builder.Entity<Owner>()
         .HasData(
-          new Owner { OwnerId = 1, Name = "Bahia Overton", Business = "Bahia Honey Beauty and Well-Being", Bio = ""},
-          new Owner { OwnerId = 2, Name = "Pepe and Nicolle", Business = "Epif", Bio = ""},
-          new Owner { OwnerId = 3, Name = "David Kahl", Business = "Fully", Bio = ""},
-          new Owner { OwnerId = 4, Name = "Val Solorzano", Business = "Chick of All Trades, LLC", Bio = ""},
-          new Owner { OwnerId = 5, Name = "Troy Douglass", Business = "Cultural Blends", Bio = ""},
-          new Owner { OwnerId = 6, Name = "Kristi Carlough", Business = "SomaFlow Health and Massage, LLC", Bio = ""},
-          new Owner { OwnerId = 7, Name = "Laurie Books", Business = "Clary Sage Herbarium", Bio = ""}
+          new Owner { OwnerId = 1, Name = "Bahia Overton", Business = "Bahia Honey Beauty and Well-Being", Bio = "Bahia Overton founded Bahia Honey after developing a moisturizure to help treat her daughters eczema, after repeatedly trying other moisturizers on the market with no success."},
+          new Owner { OwnerId = 2, Name = "Pepe and Nicolle", Business = "Epif", Bio = "This couple owned and operated an international restaurant and bar for six years in Pepe's hometown of Valparaiso, Chile. After moving to Portland, they designed and created their business right in front of their very own home. The interior of their restaurant and bar is full of gems from Chile and Peru, such as the bar top!"},
+          new Owner { OwnerId = 3, Name = "David Kahl", Business = "Fully", Bio = "On September 11th, David Kahl stood on the 56th floor of his office building, four miles away from the Twin Towers in New York city. After that life changing day, he quit his job as an accountant and started down a path that led to the founding of his business, Fully."},
+          new Owner { OwnerId = 4, Name = "Val Solorzano", Business = "Chick of All Trades, LLC", Bio = "Val Solorzano started her business in 2006 and focused initially on providing traffic control services. Her business has since grown and expanded and now has a hand in a variety of projects around Portland."},
+          new Owner { OwnerId = 5, Name = "Troy Douglass", Business = "Cultural Blends", Bio = "Troy Douglass is a member of the Confederated Tribes of Grand Ronde who owns and operates a sports merchandise store and designs his own apparal. In one of his instagram posts at @culturalblends, he writes about the fact that he is a descendent of Chief Coboway, a Clatsop Chief."},
+          new Owner { OwnerId = 6, Name = "Kristi Carlough", Business = "SomaFlow Health and Massage, LLC", Bio = "Before the pandemic, Kristi Carlough was taking coaching and business classes taught by the Native American Youth and Family Center. She prioritizes creating a safe space where BIPOC can feel comfortable going for self-care."},
+          new Owner { OwnerId = 7, Name = "Laurie Books", Business = "Clary Sage Herbarium", Bio = "As the Clary Sage Herbarium site states, Clary is an indigenous, two-spirit woman, providing fine quality organic herbal products and focused on promoting local awareness and offering a place of healing."}
+          // new Owner { OwnerId = , Name = "", Business = "", Bio = ""}
         );
     }
-
-    // protected override void OnModelCreating(ModelBuilder builder)
-    // {
-    //   builder.Entity<Owner>()
-    //     .HasData(
-    //       new Owner { OwnerId = 1, Name = "Bahia Overton", Business = "Bahia Honey Beauty and Well-Being", Bio = ""},
-    //       new Owner { OwnerId = 2, Name = "Pepe and Nicolle", Business = "Epif", Bio = ""},
-    //       new Owner { OwnerId = 3, Name = "David Kahl", Business = "Fully", Bio = ""},
-    //       new Owner { OwnerId = 4, Name = "Val Solorzano", Business = "Chick of All Trades, LLC", Bio = ""},
-    //       new Owner { OwnerId = 5, Name = "Troy Douglass", Business = "Cultural Blends", Bio = ""},
-    //       new Owner { OwnerId = 6, Name = "Kristi Carlough", Business = "SomaFlow Health and Massage, LLC", Bio = ""},
-    //       new Owner { OwnerId = 7, Name = "Laurie Books", Business = "Clary Sage Herbarium", Bio = ""}
-    //     );
-    // }
   }
 }
