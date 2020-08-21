@@ -24,7 +24,7 @@ namespace PdxBusiness.Controllers
       return _db.Owners.ToList();
     }
 
-    // POST api/businesses    -> THIS IS LIKE CREATE
+    // POST api/owners    -> THIS IS LIKE CREATE
     [HttpPost]
     public void Post([FromBody] Owner owner) //expect business object from body
     {
@@ -32,30 +32,30 @@ namespace PdxBusiness.Controllers
       _db.SaveChanges();
     }
 
-    // GET api/animals/#
+    // GET api/owners/#
     [HttpGet("{id}")]
     public ActionResult<Owner> Get(int id) 
     // very similar to controller on line 20, but takes in id and returns specific result instead of returning all results
     {
-      return _db.Businesses.FirstOrDefault(business => business.BusinessId == id);
+      return _db.Owners.FirstOrDefault(owner => owner.OwnerId == id);
     }
 
-    // PUT api/animals/#    -> THIS IS LIKE EDIT
+    // PUT api/owners/#    -> THIS IS LIKE EDIT
     [HttpPut("{id}")]
-    public void Put(int id, [FromBody] Business business) 
+    public void Put(int id, [FromBody] Owner owner) 
     // needs an id so it knows which object to edit, changes to be made should be made in the body prior to activating PUT route, which is why we also take in the object from the body - this is how we know what to change
     {
-      business.BusinessId = id;
-      _db.Entry(business).State = EntityState.Modified;
+      owner.OwnerId = id;
+      _db.Entry(owner).State = EntityState.Modified;
       _db.SaveChanges();
     }
 
-    // DELETE api/animals/#
+    // DELETE api/owners/#
     [HttpDelete("{id}")]
     public void Delete(int id)
     {
-      var businessToDelete = _db.Businesses.FirstOrDefault(business => business.BusinessId == id);
-      _db.Businesses.Remove(businessToDelete);
+      var ownerToDelete = _db.Owners.FirstOrDefault(owner => owner.OwnerId == id);
+      _db.Owners.Remove(ownerToDelete);
       _db.SaveChanges();
     }
   }

@@ -32,7 +32,7 @@ namespace PdxBusiness.Controllers
       _db.SaveChanges();
     }
 
-    // GET api/animals/#
+    // GET api/businesses/#
     [HttpGet("{id}")]
     public ActionResult<Business> Get(int id) 
     // very similar to controller on line 20, but takes in id and returns specific result instead of returning all results
@@ -40,7 +40,7 @@ namespace PdxBusiness.Controllers
       return _db.Businesses.FirstOrDefault(business => business.BusinessId == id);
     }
 
-    // PUT api/animals/#    -> THIS IS LIKE EDIT
+    // PUT api/businesses/#    -> THIS IS LIKE EDIT
     [HttpPut("{id}")]
     public void Put(int id, [FromBody] Business business) 
     // needs an id so it knows which object to edit, changes to be made should be made in the body prior to activating PUT route, which is why we also take in the object from the body - this is how we know what to change
@@ -50,7 +50,7 @@ namespace PdxBusiness.Controllers
       _db.SaveChanges();
     }
 
-    // DELETE api/animals/#
+    // DELETE api/businesses/#
     [HttpDelete("{id}")]
     public void Delete(int id)
     {
