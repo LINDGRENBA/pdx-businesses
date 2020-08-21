@@ -50,6 +50,10 @@ There are multiple ways to query the API. The API stores data for Businesses as 
   1. Select the GET action in the dropdown
   2. Enter the following route into url box and add the id at the end of the route : `http://localhost:5000/api/businesses/1`
 
+* Search with parameters to limit the number of pages / number of responses you receive:
+  1. Select the GET action in the dropdown
+  2. Enter the following route into the url box:
+
 * To add a business/owner: POST 
   1. Select 'Body' directly underneath url box
   2. Change radio button 'none' to 'raw'
