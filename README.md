@@ -6,10 +6,10 @@
 
 ## Description
 
-_This business API is BIPOC and LGBTQIAPK centered and is intended to provide information about the diverse range of businesses and amazing business owners that exist in the Portland Oregon area. As stated in this [article published in Forbes](https://www.forbes.com/sites/forbesfinancecouncil/2018/01/22/why-minorities-have-so-much-trouble-accessing-small-business-loans/#2406b24555c4),
->Despite leading a significant portion of the nation's businesses, minority-owned firms are still having a much harder time accessing small business loans than their white counterparts.
+*This business API is BIPOC and LGBTQIAPK centered and is intended to provide information about the diverse range of businesses and amazing business owners that exist in the Portland Oregon area. As stated in this [article published in Forbes](https://www.forbes.com/sites/forbesfinancecouncil/2018/01/22/why-minorities-have-so-much-trouble-accessing-small-business-loans/#2406b24555c4),
+>Despite leading a significant portion of the nation's businesses, minority-owned firms are still having a much harder time accessing small business loans than their white counterparts.* 
 
-The goal of this site is to help work towards equity for business owners by providing a platform where potential customers can connect with and these businesses and support their growth in the Portland community. Much of the information used to seed the database came from the following websites: [Streetroots](https://www.streetroots.org/news/2020/05/16/photo-story-community-resilience-carries-native-owned-businesses-through-pandemic) and [Mercatus](https://mercatuspdx.com/directory/black-owned-businesses/#!directory/ord=rnd)._
+*The goal of this site is to help work towards equity for business owners by providing a platform where potential customers can connect with and these businesses and support their growth in the Portland community. Much of the information used to seed the database came from the following websites: [Streetroots](https://www.streetroots.org/news/2020/05/16/photo-story-community-resilience-carries-native-owned-businesses-through-pandemic) and [Mercatus](https://mercatuspdx.com/directory/black-owned-businesses/#!directory/ord=rnd).*
 
 
 ## User Stories
