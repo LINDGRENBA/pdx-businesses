@@ -25,10 +25,31 @@ namespace PdxBusiness.Controllers
     }
 
     // GET api/businesses
-    public ActionResult<IEnumerable<Business>> Get() 
+    // public ActionResult<IEnumerable<Business>> Get() 
     //specify that our ActionResult is returning type IEnumerable because we are no longer returning Views
+    // {
+    //   return _db.Businesses.ToList();
+    // }
+
+    // GET api/businesses/pages  - search with pagination
+    [HttpGet("pages/")]
+    public async Task<IActionResult> GetAll([FromQuery] PaginationFilter filter)
     {
-      return _db.Businesses.ToList();
+      var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
+      var pagedData = await _db.Businesses
+        .Skip((validFilter.PageNumber - 1) * validFilter.PageSize) // calculates how many results/pages to skip
+        .Take(validFilter.PageSize)
+        .ToListAsync();
+      var totalRecords = await _db.Businesses.CountAsync();
+      return Ok(new PagedResponse<List<Business>>(pagedData, validFilter.PageNumber, validFilter.PageSize));
+    }
+
+    // GET api/businesses/pages/#  pagination
+    [HttpGet("pages/{id}")]
+    public async Task<IActionResult> GetById(int id)
+    {
+      var business = await _db.Businesses.Where(a => a.BusinessId == id).FirstOrDefaultAsync();
+      return Ok(new Response<Business>(business));
     }
 
     // POST api/businesses    -> THIS IS LIKE CREATE
@@ -66,27 +87,5 @@ namespace PdxBusiness.Controllers
       _db.SaveChanges();
     }
 
-    // routes using pagination - NEED TO DO IN OWNERSCONTROLLER AS WELL!!!!!!!!!!!
-
-    // GET api/businesses/pages/# with wrapper for pagination
-    [HttpGet("pages/{id}")]
-    public async Task<IActionResult> GetById(int id)
-    {
-      var business = await _db.Businesses.Where(a => a.BusinessId == id).FirstOrDefaultAsync();
-      return Ok(new Response<Business>(business));
-    }
-
-    // GET api/businesses/pages?
-    [HttpGet("pages/")]
-    public async Task<IActionResult> GetAll([FromQuery] PaginationFilter filter)
-    {
-      var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
-      var pagedData = await _db.Businesses
-        .Skip((validFilter.PageNumber - 1) * validFilter.PageSize) // calculates how many results/pages to skip
-        .Take(validFilter.PageSize)
-        .ToListAsync();
-      var totalRecords = await _db.Businesses.CountAsync();
-      return Ok(new PagedResponse<List<Business>>(pagedData, validFilter.PageNumber, validFilter.PageSize));
-    }
   }
 }
