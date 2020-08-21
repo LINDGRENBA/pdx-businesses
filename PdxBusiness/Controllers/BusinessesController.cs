@@ -3,6 +3,13 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using PdxBusiness.Models;
 using Microsoft.EntityFrameworkCore;
+using PdxBusiness.Wrappers;
+using System.Threading.Tasks;
+
+// using System;
+// using System.Net.WebSockets;
+// using Microsoft.AspNetCore.Http;
+
 
 namespace PdxBusiness.Controllers
 {
@@ -58,5 +65,17 @@ namespace PdxBusiness.Controllers
       _db.Businesses.Remove(businessToDelete);
       _db.SaveChanges();
     }
+
+    // routes using pagination
+
+    // GET api/businesses/# with wrapper for pagination
+    [HttpGet("pages/{id}")]
+    public async Task<IActionResult> GetById(int id)
+    {
+      var business = await _db.Businesses.Where(a => a.BusinessId == id).FirstOrDefaultAsync();
+      return Ok(new Response<Business>(business));
+    }
+
+    
   }
 }
