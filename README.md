@@ -21,7 +21,8 @@ The goal of this site is to help work towards equity for business owners by prov
 
 ## Stretch Goals
 
-* Add feature to search by parameters  
+* Add feature to search by parameters
+* Implementing JWT authentication  
 
 
 ## Setup/Installation Requirements
@@ -30,11 +31,11 @@ The goal of this site is to help work towards equity for business owners by prov
 * Open the project in Visual Studio Code or a code editor of your choosing.
 * Once the project is open, select **Terminal** from the toolbar at the top of the window - a terminal should open at the bottom of the window.
 * Place your cursor in the terminal and navigate into the project directory by typing the command `cd PdxBusiness` and hitting **enter**. 
-* Once you have navigated into the project directory, type the following commands into the terminal one at a time, hitting enter after each command and waiting for the commands to finish running.
+* Once you have navigated into the project directory, type the following commands into the terminal one at a time, hitting **enter** after each command and waiting for the commands to finish running.
   1. `dotnet restore`
   2. `dotnet clean`
   3. `dotnet build`
-* If these three commands complete successfully, you are now able to enter the command `dotnet run` and then hit enter. This will start a server for the project. You are now ready to query the API.
+* If these three commands complete successfully, you are now able to enter the command `dotnet run` and then hit **enter**. This will start a server for the project. You are now ready to query the API.
 * When you are finished, to close the server, select `Ctrl + C` on your keyboard for Windows or `Cmd + C` on a Mac.
 
 ## Querying the API
@@ -43,11 +44,11 @@ There are multiple ways to query the API. The API stores data for Businesses as 
 
 * To search for all businesses/owners: 
   1. Select the GET action in the dropdown
-  2. Enter the following route into url box : http://localhost:5000/api/businesses 
+  2. Enter the following route into url box : `http://localhost:5000/api/businesses`
 
 * To search for a specific business/owner by id:
   1. Select the GET action in the dropdown
-  2. Enter the following route into url box and add the id at the end of the route : http://localhost:5000/api/businesses/1
+  2. Enter the following route into url box and add the id at the end of the route : `http://localhost:5000/api/businesses/1`
 
 * To add a business/owner: POST 
   1. Select 'Body' directly underneath url box
@@ -84,7 +85,7 @@ There are multiple ways to query the API. The API stores data for Businesses as 
 
 * To delete a specific business by id:
   1. Select the DELETE action in the dropdown
-  2. Enter the following route into url box and add the id at the end of the route : http://localhost:5000/api/businesses/1 -->
+  2. Enter the following route into url box and add the id at the end of the route : `http://localhost:5000/api/businesses/1`
 
 
 <!-- Use an ampersand(&) to separate parameters. -->
