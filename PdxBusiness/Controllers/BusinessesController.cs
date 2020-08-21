@@ -30,5 +30,13 @@ namespace PdxBusiness.Controllers
       _db.Businesses.Add(business);
       _db.SaveChanges();
     }
+
+    // GET api/animals/#
+    [HttpGet("{id}")]
+    public ActionResult<Business> Get(int id) 
+    // very similar to controller on line 20, but takes in id and returns specific result instead of returning all results
+    {
+      return _db.Businesses.FirstOrDefault(business => business.BusinessId == id);
+    }
   }
 }
