@@ -9,6 +9,6 @@ namespace PdxBusiness.Models
 
     }
 
-    public DbSet<PdxBusiness> PdxBusinesses { get; set; }
+    public DbSet<Business> Businesses { get; set; }
   }
 }
