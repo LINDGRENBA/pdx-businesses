@@ -41,7 +41,7 @@ namespace PdxBusiness
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection(); increases security, but slows development
             app.UseMvc();
         }
     }
