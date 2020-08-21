@@ -10,6 +10,7 @@ namespace PdxBusiness.Models
     }
 
     public DbSet<Business> Businesses { get; set; }
+    public DbSet<Owner> Owners { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
@@ -27,6 +28,31 @@ namespace PdxBusiness.Models
           // new Business { BusinessId = , Name = "", Owner = "", Address = "", PhoneNumber = "", Description = "", Url = ""}
           // new Business { BusinessId = , Name = "", Owner = "", Address = "", PhoneNumber = "", Description = "", Url = ""}
         );
+
+        builder.Entity<Owner>()
+        .HasData(
+          new Owner { OwnerId = 1, Name = "Bahia Overton", Business = "Bahia Honey Beauty and Well-Being", Bio = ""},
+          new Owner { OwnerId = 2, Name = "Pepe and Nicolle", Business = "Epif", Bio = ""},
+          new Owner { OwnerId = 3, Name = "David Kahl", Business = "Fully", Bio = ""},
+          new Owner { OwnerId = 4, Name = "Val Solorzano", Business = "Chick of All Trades, LLC", Bio = ""},
+          new Owner { OwnerId = 5, Name = "Troy Douglass", Business = "Cultural Blends", Bio = ""},
+          new Owner { OwnerId = 6, Name = "Kristi Carlough", Business = "SomaFlow Health and Massage, LLC", Bio = ""},
+          new Owner { OwnerId = 7, Name = "Laurie Books", Business = "Clary Sage Herbarium", Bio = ""}
+        );
     }
+
+    // protected override void OnModelCreating(ModelBuilder builder)
+    // {
+    //   builder.Entity<Owner>()
+    //     .HasData(
+    //       new Owner { OwnerId = 1, Name = "Bahia Overton", Business = "Bahia Honey Beauty and Well-Being", Bio = ""},
+    //       new Owner { OwnerId = 2, Name = "Pepe and Nicolle", Business = "Epif", Bio = ""},
+    //       new Owner { OwnerId = 3, Name = "David Kahl", Business = "Fully", Bio = ""},
+    //       new Owner { OwnerId = 4, Name = "Val Solorzano", Business = "Chick of All Trades, LLC", Bio = ""},
+    //       new Owner { OwnerId = 5, Name = "Troy Douglass", Business = "Cultural Blends", Bio = ""},
+    //       new Owner { OwnerId = 6, Name = "Kristi Carlough", Business = "SomaFlow Health and Massage, LLC", Bio = ""},
+    //       new Owner { OwnerId = 7, Name = "Laurie Books", Business = "Clary Sage Herbarium", Bio = ""}
+    //     );
+    // }
   }
 }
