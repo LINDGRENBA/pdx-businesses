@@ -17,7 +17,8 @@ namespace PdxBusiness.Controllers
     }
 
     // GET api/businesses
-    public ActionResult<IEnumerable<Business>> Get()
+    public ActionResult<IEnumerable<Business>> Get() 
+    //specify that our ActionResult is returning type IEnumerable because we are no longer returning Views
     {
       return _db.Businesses.ToList();
     }
