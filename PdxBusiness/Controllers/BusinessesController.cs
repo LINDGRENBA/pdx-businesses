@@ -49,5 +49,14 @@ namespace PdxBusiness.Controllers
       _db.Entry(business).State = EntityState.Modified;
       _db.SaveChanges();
     }
+
+    // DELETE api/animals/#
+    [HttpDelete("{id}")]
+    public void Delete(int id)
+    {
+      var businessToDelete = _db.Businesses.FirstOrDefault(business => business.BusinessId == id);
+      _db.Businesses.Remove(businessToDelete);
+      _db.SaveChanges();
+    }
   }
 }
