@@ -26,6 +26,20 @@ namespace PdxBusiness.Controllers
       return _db.Owners.ToList();
     }
 
+    // PAGINATION
+    // GET api/owners/pages
+    [HttpGet("pages/")]
+    public async Task<IActionResult> GetAll([FromQuery] PaginationFilter filter)
+    {
+      var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
+      var pagedData = await _db.Owners
+        .Skip((validFilter.PageNumber - 1) * validFilter.PageSize) // calculates how many results/pages to skip
+        .Take(validFilter.PageSize)
+        .ToListAsync();
+      var totalRecords = await _db.Owners.CountAsync();
+      return Ok(new PagedResponse<List<Owner>>(pagedData, validFilter.PageNumber, validFilter.PageSize));
+    }
+
     // POST api/owners    -> THIS IS LIKE CREATE
     [HttpPost]
     public void Post([FromBody] Owner owner) //expect business object from body
