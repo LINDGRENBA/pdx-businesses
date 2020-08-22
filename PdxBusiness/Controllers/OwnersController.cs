@@ -21,7 +21,6 @@ namespace PdxBusiness.Controllers
 
     // GET api/owners
     public ActionResult<IEnumerable<Owner>> Get() 
-    //specify that our ActionResult is returning type IEnumerable because we are no longer returning Views
     {
       return _db.Owners.ToList();
     }
@@ -40,9 +39,9 @@ namespace PdxBusiness.Controllers
       return Ok(new PagedResponse<List<Owner>>(pagedData, validFilter.PageNumber, validFilter.PageSize));
     }
 
-    // POST api/owners    -> THIS IS LIKE CREATE
+    // POST api/owners
     [HttpPost]
-    public void Post([FromBody] Owner owner) //expect business object from body
+    public void Post([FromBody] Owner owner)
     {
       _db.Owners.Add(owner);
       _db.SaveChanges();
@@ -51,15 +50,13 @@ namespace PdxBusiness.Controllers
     // GET api/owners/#
     [HttpGet("{id}")]
     public ActionResult<Owner> Get(int id) 
-    // very similar to controller on line 20, but takes in id and returns specific result instead of returning all results
     {
       return _db.Owners.FirstOrDefault(owner => owner.OwnerId == id);
     }
 
-    // PUT api/owners/#    -> THIS IS LIKE EDIT
+    // PUT api/owners/# 
     [HttpPut("{id}")]
     public void Put(int id, [FromBody] Owner owner) 
-    // needs an id so it knows which object to edit, changes to be made should be made in the body prior to activating PUT route, which is why we also take in the object from the body - this is how we know what to change
     {
       owner.OwnerId = id;
       _db.Entry(owner).State = EntityState.Modified;
