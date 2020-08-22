@@ -50,7 +50,7 @@ There are multiple ways to query the API. The API stores data for Businesses as 
   1. Select the GET action in the dropdown
   2. Enter the following route into url box and add the id at the end of the route : `http://localhost:5000/api/businesses/1`
 
-* Search with parameters to limit the number of pages or number of search results you receive:
+* Search with parameters to limit the number of pages or number of search results you receive. Remember, in the examples below, you can exchange the word 'businesses' with 'owners' to search the list of owners instead:
   1. Select the GET action in the dropdown
   2. Enter a route url and add a query with the following format `/pages?PageNumber=#&PageSize=#` changing the 3 to your desired parameters
   For example, you could enter the following route into the url box: `http://localhost:5000/api/businesses/pages?PageNumber=1&PageSize=5` - this will return the first page, with up to 5 search results on that page. 
@@ -66,7 +66,8 @@ There are multiple ways to query the API. The API stores data for Businesses as 
   2. Change radio button 'none' to 'raw'
   3. Change dropdown from 'Text' to 'JSON'
   4. Enter new business object into the body section (directly under the raw and JSON section)
-  Example Object:
+  5. Enter the route into the postman Url box : `http://localhost:5000/api/businesses`
+  Example Business Object:
   ```
   {
     "Name": "Bahia Honey Beauty and Well-being",
@@ -77,12 +78,22 @@ There are multiple ways to query the API. The API stores data for Businesses as 
     "Url": "https://bahiahoney.com/"
   }
   ```
+  Example Owner Object:
+  ```
+  {
+    "ownerId": 4,
+    "name": "Val Solorzano",
+    "business": "Chick of All Trades, LLC",
+    "bio": "Val Solorzano started her business in 2006 and focused initially on providing traffic control services. Her business has since grown and expanded and now has a hand in a variety of projects around Portland."
+  }
+  ```
+  4. Click the **Send** button to the right of the Url box
 
 * To Edit an existing object:
   1. Select the PUT action in the dropdown
-  2. Enter the following route into url box and add the id of the object you want to edit at the end of the route : http://localhost:5000/api/businesses/1
-  3. Update the existing business object into the body section (directly under the raw and JSON section)
-  Example Object:
+  2. Enter the route into the postman url box and add the id of the object you want to edit at the end of the route : `http://localhost:5000/api/businesses/1`
+  3. Update the existing business object in the body section (directly under the raw and JSON section)
+  Example Business Object:
   ```
   {
     "Name": "Bahia Honey Beauty and Well-being",
@@ -93,6 +104,16 @@ There are multiple ways to query the API. The API stores data for Businesses as 
     "Url": "https://bahiahoney.com/"
   }
   ```
+  Example Owner Object:
+  ```
+  {
+    "ownerId": 4,
+    "name": "Val Solorzano",
+    "business": "C.O.A.T.",
+    "bio": "Val Solorzano started her business in 2006 and focused initially on providing traffic control services. Her business has since grown and expanded and now has a hand in a variety of projects around Portland."
+  }
+  ```
+  4. Click the **Send** button to the right of the Url box
 
 * To delete a specific business by id:
   1. Select the DELETE action in the dropdown
