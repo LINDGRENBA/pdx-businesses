@@ -33,7 +33,6 @@ namespace PdxBusiness.Controllers
     }
 
     // PAGINATION
-
     // GET api/businesses/pages
     [HttpGet("pages/")]
     public async Task<IActionResult> GetAll([FromQuery] PaginationFilter filter)
@@ -47,17 +46,9 @@ namespace PdxBusiness.Controllers
       return Ok(new PagedResponse<List<Business>>(pagedData, validFilter.PageNumber, validFilter.PageSize));
     }
 
-    // GET api/businesses/pages/#  
-    // [HttpGet("{id}")]
-    // public async Task<IActionResult> GetById(int id)
-    // {
-    //   var business = await _db.Businesses.Where(a => a.BusinessId == id).FirstOrDefaultAsync();
-    //   return Ok(new Response<Business>(business));
-    // }
-
-    // POST api/businesses    -> THIS IS LIKE CREATE
+    // POST api/businesses  
     [HttpPost]
-    public void Post([FromBody] Business business) //expect business object from body
+    public void Post([FromBody] Business business) 
     {
       _db.Businesses.Add(business);
       _db.SaveChanges();
@@ -66,12 +57,11 @@ namespace PdxBusiness.Controllers
     // GET api/businesses/#
     [HttpGet("{id}")]
     public ActionResult<Business> Get(int id) 
-    // very similar to controller on line 20, but takes in id and returns specific result instead of returning all results
     {
       return _db.Businesses.FirstOrDefault(business => business.BusinessId == id);
     }
 
-    // PUT api/businesses/#    -> THIS IS LIKE EDIT
+    // PUT api/businesses/# 
     [HttpPut("{id}")]
     public void Put(int id, [FromBody] Business business) 
     {
