@@ -27,7 +27,7 @@
 
 ## Setup/Installation Requirements
 
-* Clone the repository from the GitHub website.
+* Clone the [repository]() from the GitHub website.
 * Open the project in Visual Studio Code or a code editor of your choosing.
 * Once the project is open, select **Terminal** from the toolbar at the top of the window - a terminal should open at the bottom of the window.
 * Place your cursor in the terminal and navigate into the project directory by typing the command `cd PdxBusiness` and hitting **enter**. 
