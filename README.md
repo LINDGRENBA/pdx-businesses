@@ -50,9 +50,16 @@ There are multiple ways to query the API. The API stores data for Businesses as 
   1. Select the GET action in the dropdown
   2. Enter the following route into url box and add the id at the end of the route : `http://localhost:5000/api/businesses/1`
 
-* Search with parameters to limit the number of pages / number of responses you receive:
+* Search with parameters to limit the number of pages or number of search results you receive:
   1. Select the GET action in the dropdown
-  2. Enter the following route into the url box:
+  2. Enter a route url and add a query with the following format `/pages?PageNumber=#&PageSize=#` changing the 3 to your desired parameters
+  For example, you could enter the following route into the url box: `http://localhost:5000/api/businesses/pages?PageNumber=1&PageSize=5` - this will return the first page, with up to 5 search results on that page. 
+  3. You can adjust the query in a couple of ways
+    * To change the page number that you receive, you can update the PageNumber
+      ex: `http://localhost:5000/api/businesses/pages?PageNumber=100&PageSize=5` - this will return the one-hundreth page, with up to 5 items on that page.
+    * To change the number of responses per page, you can update the PageSize 
+      ex: `http://localhost:5000/api/businesses/pages?PageNumber=1&PageSize=30` - this will return the first page, with up to 30 items on that page.
+**Note: If there are fewer items in the database than you are requesting (for example, you query PageSize=30 to see 30 results on the page, but there are only 10 items in the database), you will see the smaller number of items returned.
 
 * To add a business/owner: POST 
   1. Select 'Body' directly underneath url box

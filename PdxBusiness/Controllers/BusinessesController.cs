@@ -25,31 +25,11 @@ namespace PdxBusiness.Controllers
     }
 
     // GET api/businesses
-    // public ActionResult<IEnumerable<Business>> Get() 
-    //specify that our ActionResult is returning type IEnumerable because we are no longer returning Views
-    // {
-    //   return _db.Businesses.ToList();
-    // }
-
-    // GET api/businesses/pages  - search with pagination
-    [HttpGet("pages/")]
-    public async Task<IActionResult> GetAll([FromQuery] PaginationFilter filter)
+    [HttpGet]
+    public ActionResult<IEnumerable<Business>> Get() 
+    // specify that our ActionResult is returning type IEnumerable because we are no longer returning Views
     {
-      var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
-      var pagedData = await _db.Businesses
-        .Skip((validFilter.PageNumber - 1) * validFilter.PageSize) // calculates how many results/pages to skip
-        .Take(validFilter.PageSize)
-        .ToListAsync();
-      var totalRecords = await _db.Businesses.CountAsync();
-      return Ok(new PagedResponse<List<Business>>(pagedData, validFilter.PageNumber, validFilter.PageSize));
-    }
-
-    // GET api/businesses/pages/#  pagination
-    [HttpGet("pages/{id}")]
-    public async Task<IActionResult> GetById(int id)
-    {
-      var business = await _db.Businesses.Where(a => a.BusinessId == id).FirstOrDefaultAsync();
-      return Ok(new Response<Business>(business));
+      return _db.Businesses.ToList();
     }
 
     // POST api/businesses    -> THIS IS LIKE CREATE
@@ -71,7 +51,6 @@ namespace PdxBusiness.Controllers
     // PUT api/businesses/#    -> THIS IS LIKE EDIT
     [HttpPut("{id}")]
     public void Put(int id, [FromBody] Business business) 
-    // needs an id so it knows which object to edit, changes to be made should be made in the body prior to activating PUT route, which is why we also take in the object from the body - this is how we know what to change
     {
       business.BusinessId = id;
       _db.Entry(business).State = EntityState.Modified;
@@ -85,6 +64,29 @@ namespace PdxBusiness.Controllers
       var businessToDelete = _db.Businesses.FirstOrDefault(business => business.BusinessId == id);
       _db.Businesses.Remove(businessToDelete);
       _db.SaveChanges();
+    }
+
+    // PAGINATION
+
+    // GET api/businesses/pages
+    [HttpGet("pages/")]
+    public async Task<IActionResult> GetAll([FromQuery] PaginationFilter filter)
+    {
+      var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
+      var pagedData = await _db.Businesses
+        .Skip((validFilter.PageNumber - 1) * validFilter.PageSize) // calculates how many results/pages to skip
+        .Take(validFilter.PageSize)
+        .ToListAsync();
+      var totalRecords = await _db.Businesses.CountAsync();
+      return Ok(new PagedResponse<List<Business>>(pagedData, validFilter.PageNumber, validFilter.PageSize));
+    }
+
+    // GET api/businesses/pages/#  
+    [HttpGet("pages/{id}")]
+    public async Task<IActionResult> GetById(int id)
+    {
+      var business = await _db.Businesses.Where(a => a.BusinessId == id).FirstOrDefaultAsync();
+      return Ok(new Response<Business>(business));
     }
 
   }
