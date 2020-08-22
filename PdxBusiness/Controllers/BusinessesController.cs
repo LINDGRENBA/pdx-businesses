@@ -32,6 +32,29 @@ namespace PdxBusiness.Controllers
       return _db.Businesses.ToList();
     }
 
+    // PAGINATION
+
+    // GET api/businesses/pages
+    [HttpGet("pages/")]
+    public async Task<IActionResult> GetAll([FromQuery] PaginationFilter filter)
+    {
+      var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
+      var pagedData = await _db.Businesses
+        .Skip((validFilter.PageNumber - 1) * validFilter.PageSize) // calculates how many results/pages to skip
+        .Take(validFilter.PageSize)
+        .ToListAsync();
+      var totalRecords = await _db.Businesses.CountAsync();
+      return Ok(new PagedResponse<List<Business>>(pagedData, validFilter.PageNumber, validFilter.PageSize));
+    }
+
+    // GET api/businesses/pages/#  
+    // [HttpGet("{id}")]
+    // public async Task<IActionResult> GetById(int id)
+    // {
+    //   var business = await _db.Businesses.Where(a => a.BusinessId == id).FirstOrDefaultAsync();
+    //   return Ok(new Response<Business>(business));
+    // }
+
     // POST api/businesses    -> THIS IS LIKE CREATE
     [HttpPost]
     public void Post([FromBody] Business business) //expect business object from body
@@ -65,29 +88,5 @@ namespace PdxBusiness.Controllers
       _db.Businesses.Remove(businessToDelete);
       _db.SaveChanges();
     }
-
-    // PAGINATION
-
-    // GET api/businesses/pages
-    [HttpGet("pages/")]
-    public async Task<IActionResult> GetAll([FromQuery] PaginationFilter filter)
-    {
-      var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
-      var pagedData = await _db.Businesses
-        .Skip((validFilter.PageNumber - 1) * validFilter.PageSize) // calculates how many results/pages to skip
-        .Take(validFilter.PageSize)
-        .ToListAsync();
-      var totalRecords = await _db.Businesses.CountAsync();
-      return Ok(new PagedResponse<List<Business>>(pagedData, validFilter.PageNumber, validFilter.PageSize));
-    }
-
-    // GET api/businesses/pages/#  
-    [HttpGet("pages/{id}")]
-    public async Task<IActionResult> GetById(int id)
-    {
-      var business = await _db.Businesses.Where(a => a.BusinessId == id).FirstOrDefaultAsync();
-      return Ok(new Response<Business>(business));
-    }
-
   }
 }
